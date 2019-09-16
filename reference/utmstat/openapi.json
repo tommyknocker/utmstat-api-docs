@@ -191,149 +191,7 @@
         }
       }
     },
-    "/call/{hash}/record/": {
-      "parameters": [
-        {
-          "type": "string",
-          "name": "hash",
-          "in": "path",
-          "required": true,
-          "description": "Хэш проекта"
-        }
-      ],
-      "post": {
-        "summary": "/call/{hash}/record/",
-        "tags": [
-          "Звонки"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "status": {
-                  "type": "integer",
-                  "default": 200,
-                  "description": "HTTP статус",
-                  "example": 200
-                },
-                "has_error": {
-                  "type": "null",
-                  "description": "Флаг наличия ошибки"
-                },
-                "data": {
-                  "type": "null",
-                  "description": "Возвращаемые данные"
-                },
-                "message": {
-                  "type": "null",
-                  "description": "Сообщение об ошибке"
-                }
-              },
-              "required": [
-                "status",
-                "has_error",
-                "data",
-                "message"
-              ]
-            },
-            "examples": {
-              "Пример": {
-                "status": 200,
-                "has_error": null,
-                "data": null,
-                "message": null
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "status": {
-                  "type": "integer",
-                  "default": 400,
-                  "description": "HTTP статус",
-                  "example": 400
-                },
-                "has_error": {
-                  "type": "integer",
-                  "default": 1,
-                  "description": "Флаг наличия ошибки",
-                  "example": 1
-                },
-                "data": {
-                  "type": "null",
-                  "description": "Возвращаемые данные"
-                },
-                "message": {
-                  "type": "string",
-                  "description": "Сообщение об ошибке",
-                  "example": "record_url должен являться валидным URL"
-                }
-              },
-              "required": [
-                "status",
-                "has_error",
-                "data",
-                "message"
-              ]
-            },
-            "examples": {
-              "Пример": {
-                "status": 400,
-                "has_error": 1,
-                "data": null,
-                "message": "Параметр record_url должен быть валидным URL"
-              }
-            }
-          }
-        },
-        "description": "Уведомление о записи звонка",
-        "consumes": [
-          "application/x-www-form-urlencoded"
-        ],
-        "parameters": [
-          {
-            "in": "formData",
-            "type": "string",
-            "name": "event",
-            "description": "Название события: notify_record",
-            "default": "notify_record",
-            "required": true
-          },
-          {
-            "in": "formData",
-            "type": "string",
-            "name": "call_id",
-            "required": true,
-            "description": "Id звонка, должен быть уникальным в пределах проекта"
-          },
-          {
-            "in": "formData",
-            "type": "string",
-            "name": "record_url",
-            "required": true,
-            "description": "Ссылка на запись. Должна быть валидным url"
-          }
-        ],
-        "operationId": "POST_call-hash-record",
-        "x-stoplight": {
-          "id": "POST_call-hash-record",
-          "beforeScript": null,
-          "afterScript": null,
-          "public": true,
-          "mock": {
-            "enabled": false,
-            "dynamic": false,
-            "statusCode": 200
-          }
-        }
-      }
-    },
-    "/call/{hash}/end/": {
+      "/call/{hash}/end/": {
       "parameters": [
         {
           "type": "string",
@@ -505,6 +363,148 @@
         "operationId": "POST_call-hash-end",
         "x-stoplight": {
           "id": "POST_call-hash-end",
+          "beforeScript": null,
+          "afterScript": null,
+          "public": true,
+          "mock": {
+            "enabled": false,
+            "dynamic": false,
+            "statusCode": 200
+          }
+        }
+      }
+    },
+    "/call/{hash}/record/": {
+      "parameters": [
+        {
+          "type": "string",
+          "name": "hash",
+          "in": "path",
+          "required": true,
+          "description": "Хэш проекта"
+        }
+      ],
+      "post": {
+        "summary": "/call/{hash}/record/",
+        "tags": [
+          "Звонки"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "default": 200,
+                  "description": "HTTP статус",
+                  "example": 200
+                },
+                "has_error": {
+                  "type": "null",
+                  "description": "Флаг наличия ошибки"
+                },
+                "data": {
+                  "type": "null",
+                  "description": "Возвращаемые данные"
+                },
+                "message": {
+                  "type": "null",
+                  "description": "Сообщение об ошибке"
+                }
+              },
+              "required": [
+                "status",
+                "has_error",
+                "data",
+                "message"
+              ]
+            },
+            "examples": {
+              "Пример": {
+                "status": 200,
+                "has_error": null,
+                "data": null,
+                "message": null
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "default": 400,
+                  "description": "HTTP статус",
+                  "example": 400
+                },
+                "has_error": {
+                  "type": "integer",
+                  "default": 1,
+                  "description": "Флаг наличия ошибки",
+                  "example": 1
+                },
+                "data": {
+                  "type": "null",
+                  "description": "Возвращаемые данные"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Сообщение об ошибке",
+                  "example": "record_url должен являться валидным URL"
+                }
+              },
+              "required": [
+                "status",
+                "has_error",
+                "data",
+                "message"
+              ]
+            },
+            "examples": {
+              "Пример": {
+                "status": 400,
+                "has_error": 1,
+                "data": null,
+                "message": "Параметр record_url должен быть валидным URL"
+              }
+            }
+          }
+        },
+        "description": "Уведомление о записи звонка",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "type": "string",
+            "name": "event",
+            "description": "Название события: notify_record",
+            "default": "notify_record",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "type": "string",
+            "name": "call_id",
+            "required": true,
+            "description": "Id звонка, должен быть уникальным в пределах проекта"
+          },
+          {
+            "in": "formData",
+            "type": "string",
+            "name": "record_url",
+            "required": true,
+            "description": "Ссылка на запись. Должна быть валидным url"
+          }
+        ],
+        "operationId": "POST_call-hash-record",
+        "x-stoplight": {
+          "id": "POST_call-hash-record",
           "beforeScript": null,
           "afterScript": null,
           "public": true,
