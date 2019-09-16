@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "UTMSTAT",
-    "version": "v1",
+    "version": "1.0",
     "contact": {
       "name": "Aleksey Laptev",
       "email": "utmstat.com@gmail.com"
@@ -20,7 +20,7 @@
     "application/x-www-form-urlencoded"
   ],
   "paths": {
-    "/call/{hash}/start/": {
+    "/call/{hash}/start": {
       "parameters": [
         {
           "type": "string",
@@ -31,10 +31,8 @@
         }
       ],
       "post": {
-        "summary": "/call/{hash}start/",
-        "tags": [
-          "Звонки"
-        ],
+        "summary": "/call/{hash}start",
+        "tags": ["Звонки"],
         "responses": {
           "200": {
             "description": "OK",
@@ -43,18 +41,24 @@
               "properties": {
                 "status": {
                   "type": "integer",
-                  "description": "HTTP статус"
+                  "description": "HTTP status"
                 },
                 "has_error": {
-                  "type": "integer",
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
                   "description": "Флаг наличия ошибки"
                 },
                 "data": {
-                  "type": "object",
+                  "type": "null",
                   "description": "Возвращаемые данные"
                 },
                 "message": {
-                  "type": "string",
+                  "type": [
+                    "string",
+                    "null"
+                  ],
                   "description": "Сообщение об ошибке"
                 }
               },
@@ -99,8 +103,7 @@
             "type": "string",
             "name": "telephony_name",
             "description": "Название телефонии",
-            "default": "Внешняя телефония",
-            "required": true
+            "default": "Внешняя телефония"
           },
           {
             "in": "formData",
@@ -138,21 +141,10 @@
             "description": "Id менеджера, на которого назначается данный звонок"
           }
         ],
-        "operationId": "POST_call-hash-start",
-        "x-stoplight": {
-          "id": "POST_call-hash-start",
-          "beforeScript": null,
-          "afterScript": null,
-          "public": true,
-          "mock": {
-            "enabled": false,
-            "dynamic": false,
-            "statusCode": 200
-          }
-        }
+        "operationId": "POST_call-hash-start"
       }
     },
-    "/call/{hash}/end/": {
+    "/call/{hash}/end": {
       "parameters": [
         {
           "type": "string",
@@ -163,10 +155,8 @@
         }
       ],
       "post": {
-        "summary": "/call/{hash}/end/",
-        "tags": [
-          "Звонки"
-        ],
+        "summary": "/call/{hash}/end",
+        "tags": ["Звонки"],
         "responses": {
           "200": {
             "description": "OK",
@@ -183,20 +173,20 @@
               "properties": {
                 "status": {
                   "type": "integer",
-                  "description": "HTTP статус",
+                  "description": "HTTP status",
                   "example": 200,
                   "default": 200
                 },
                 "has_error": {
-                  "type": "integer",
+                  "type": "null",
                   "description": "Флаг наличия ошибки"
                 },
                 "data": {
-                  "type": "object",
+                  "type": "null",
                   "description": "Возвращаемые данные"
                 },
                 "message": {
-                  "type": "string",
+                  "type": "null",
                   "description": "Сообщение об ошибке"
                 }
               },
@@ -226,7 +216,7 @@
                   "example": 1
                 },
                 "data": {
-                  "type": "object",
+                  "type": "null",
                   "description": "Возвращаемые данные"
                 },
                 "message": {
@@ -321,21 +311,10 @@
             "description": "Id менеджера, на которого назначается данный звонок"
           }
         ],
-        "operationId": "POST_call-hash-end",
-        "x-stoplight": {
-          "id": "POST_call-hash-end",
-          "beforeScript": null,
-          "afterScript": null,
-          "public": true,
-          "mock": {
-            "enabled": false,
-            "dynamic": false,
-            "statusCode": 200
-          }
-        }
+        "operationId": "POST_call-hash-end"
       }
     },
-    "/call/{hash}/record/": {
+    "/call/{hash}/record": {
       "parameters": [
         {
           "type": "string",
@@ -346,10 +325,8 @@
         }
       ],
       "post": {
-        "summary": "/call/{hash}/record/",
-        "tags": [
-          "Звонки"
-        ],
+        "summary": "/call/{hash}/record",
+        "tags": ["Звонки"],
         "responses": {
           "200": {
             "description": "OK",
@@ -359,19 +336,19 @@
                 "status": {
                   "type": "integer",
                   "default": 200,
-                  "description": "HTTP статус",
+                  "description": "HTTP status",
                   "example": 200
                 },
                 "has_error": {
-                  "type": "integer",
+                  "type": "null",
                   "description": "Флаг наличия ошибки"
                 },
                 "data": {
-                  "type": "object",
+                  "type": "null",
                   "description": "Возвращаемые данные"
                 },
                 "message": {
-                  "type": "string",
+                  "type": "null",
                   "description": "Сообщение об ошибке"
                 }
               },
@@ -409,13 +386,13 @@
                   "example": 1
                 },
                 "data": {
-                  "type": "object",
+                  "type": "null",
                   "description": "Возвращаемые данные"
                 },
                 "message": {
                   "type": "string",
                   "description": "Сообщение об ошибке",
-                  "example": "record_url должен являться валидным URL"
+                  "example": "Номер должен быть в формате 71234567890"
                 }
               },
               "required": [
@@ -458,74 +435,15 @@
           {
             "in": "formData",
             "type": "string",
-            "name": "record_url",
+            "name": "record_id",
             "required": true,
             "description": "Ссылка на запись. Должна быть валидным url"
           }
         ],
-        "operationId": "POST_call-hash-record",
-        "x-stoplight": {
-          "id": "POST_call-hash-record",
-          "beforeScript": null,
-          "afterScript": null,
-          "public": true,
-          "mock": {
-            "enabled": false,
-            "dynamic": false,
-            "statusCode": 200
-          }
-        }
+        "operationId": "POST_call-hash-record"
       }
     }
   },
   "basePath": "/v1",
-  "securityDefinitions": {},
-  "x-stoplight": {
-    "beforeScript": "function(ctx, request) { window.utmStatConf = {projectId: \"f3bf99445f4f8290e13999e6bd90f8a8\", replaceTextElements: [], hasJivosite: true, hasMetrika: false, hasAnalytics: false, useCookieSync: true}; \n (function (u, t, m) { var s = u.createElement(t), n = u.getElementsByTagName(t)[0]; s.type = \"text/javascript\"; s.async = true; s.src = m + \"?v=\" + Date.now(); n.parentNode.insertBefore(s, n);})(document, \"script\", \"//static.utmstat.com/client.min.js\"); }",
-    "afterScript": null,
-    "version": {
-      "groups": {
-        "docs": [
-          {
-            "name": "API",
-            "divider": false,
-            "items": [
-              {
-                "_id": "introduction",
-                "type": "docTextSections"
-              }
-            ]
-          },
-          {
-            "description": "",
-            "divider": false,
-            "items": [
-              {
-                "_id": "POST_call-hash-start",
-                "type": "endpoints"
-              },
-              {
-                "_id": "POST_call-hash-end",
-                "type": "endpoints"
-              },
-              {
-                "_id": "POST_call-hash-record",
-                "type": "endpoints"
-              }
-            ],
-            "name": "Звонки"
-          }
-        ]
-      }
-    },
-    "functions": {},
-    "textSections": {
-      "introduction": {
-        "id": "introduction",
-        "name": "Начало работы",
-        "content": "С помощью данного API можно различные бизнес-задачи.\n\n ### Протокол передачи данных\n\n API поддерживает только HTTPS протокол.\n\n ### Формат запроса \n\n По умолчанию в API Utmstat используются POST-запросы. Кросс-доменные запросы (CORS) не поддерживаются. \n\n ### Формат ответа \n\n Форматом ответа по умолчанию является JSON.",
-        "public": true
-      }
-    }
-  }
+  "securityDefinitions": {}
 }
